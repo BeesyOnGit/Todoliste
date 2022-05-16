@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+*{
+    margin: 0;
+}
+.hdiv{
+    width: 100%;
+    display: flex;
+    background-color: rgb(34, 226, 185);
+    justify-content: center;
+    height: 100px;
+    align-items: center;
+}
+
+#task{
+    width: 70%;
+    height: 40px;
+    border-style: none;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+#buton{
+    width: 10%;
+    height: 42px;
+    border-style: none;
+    background-color: rgb(18, 241, 103);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+#buton:hover{
+    background-color: rgb(9, 196, 80);
+    cursor: pointer;
+}
+
+
+.divlist{
+    width: 100%;
+    display: flex;
+    margin: auto;
+    height: 40px;
+    align-items: center;
+}
+
+.divlist:hover{
+    cursor: pointer;
+    background-color: rgb(212, 212, 212);
+}
+
+.delbuton{
+    width: 5%;
+    margin: auto;
+    justify-content: end; 
+    height: 40px;  
+    text-align: center;
+    font-size: 1.3em;
+    color: rgb(143, 143, 143);
+}
+.delbuton:hover{
+    background-color: rgb(235, 67, 67);
+    color: aliceblue;
+}
+
+.styleliste{
+    justify-content: flex-start;
+    width: 95%;
+    font-size: 1.3em;
+    text-align: left;
+}
+
+.delbuton{
+    border-style: none;
+    background-color: rgba(0 ,0 ,0 , 0)
+}
+
+.divlistdon{
+    background-color: rgb(129, 129, 129);
+}
+
+.stylelistedon{
+    font-size: 1.3em;
+    text-align: left;
+    text-decoration: line-through;
+
+}
+
+</style>
+<body>
+    <div class="hdiv">
+        <input id="task" type="text" placeholder="  Input Your task...">
+        <button id="buton">Submit</button>
+    </div>
+    <div id="liste">
+        
+    </div>
+</body>
+<script>
+    var but = document.getElementById("buton")
+    but.onclick = function addtask() {
+        var inpt = document.getElementById("task")
+        var task = inpt.value  
+        if (task == "") {
+            alert("Please insert a task to add")
+        }
+        else if (task != "") {
+        var addiv = document.createElement("div")
+        addiv.onclick = function taskdonn() {
+            addiv.querySelector("p").classList.toggle("stylelistedon");
+            addiv.classList.toggle("divlistdon")
+        }
+        addiv.classList.add("divlist")
+        var addtask = document.createElement("p")
+        addtask.classList.add("styleliste")
+        var text = document.createTextNode(task)
+        var text2 = document.createTextNode("X")
+        var delbuton = document.createElement("button")
+        delbuton.onclick = function(){
+            delbuton.parentElement.remove()
+        }
+        delbuton.classList.add("delbuton")
+        delbuton.appendChild(text2)
+        addtask.appendChild(text)
+        addiv.appendChild(addtask)
+        addiv.appendChild(delbuton)
+        document.getElementById("liste").appendChild(addiv)
+        inpt.value = "";
+        }
+        
+    }
+
+</script>
+</html>
